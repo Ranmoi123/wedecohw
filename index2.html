@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>減塑小子</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="server.js">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      overflow-x: hidden;
+      /* 禁止水平滾動 */
+    }
+
+    .sticker {
+      margin-bottom: 20px;
+    }
+
+    .sticker img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    .sticker-description {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .sticker-link {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .main-intro {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .line {
+      margin: 100px;
+    }
+
+    .line .card-img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    @media (min-width: 900px) {
+
+      .line .card-img {
+        max-width: 80%;
+      }
+    }
+
+    /* .card-body .img-thumbnail {
+      max-width: 100%;
+      height: auto;
+    } */
+
+    @media (max-width: 900px) {
+      #responsive-images img {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .line {
+        width: 60%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+
+      }
+    }
+
+    .content233 {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding-bottom: 100px;
+    }
+
+    .content233 .item {
+      width: 370px;
+      text-align: center;
+      border: 1px solid #000;
+      background-color: rgba(255, 255, 255, 0.7);
+      transition: .5s;
+      transform: translateY(0px);
+    }
+
+    .content233 .item:hover {
+      transform: translateY(-40px);
+    }
+
+    .content233 .item img {
+      width: 100%;
+    }
+
+    .content233 .item h2 {
+      border-bottom: 1px solid #000;
+      padding-bottom: .3em;
+      margin-bottom: .3em;
+    }
+
+    .content233 .item p {
+      line-height: 1.5;
+      padding: 10px 20px;
+    }
+
+    .content233 .item .txt {
+      padding: 10px 20px;
+    }
+
+    .content233 .item .txt .btn {
+      color: #555;
+      line-height: 3em;
+      border: 1px solid #ccc;
+      padding: 0 1em;
+      align-self: flex-end;
+      border-radius: 200px;
+      margin-top: auto;
+    }
+
+    .con233top h1 {
+      padding-top: 60px;
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 45px;
+    }
+
+    .contentbig233 {
+      background-attachment: fixed;
+      background-position: 50% 50%;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .notification {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 1050;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .notification.show {
+      display: block;
+      opacity: 1;
+    }
+
+    .wrapnew {
+      width: 100%;
+      display: flex;
+    }
+
+    .wrapnew .item {
+      width: 25%;
+      position: relative;
+    }
+
+    .wrapnew .item img {
+      width: 100%;
+      vertical-align: middle;
+    }
+
+    .wrapnew .item .txt {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, .6);
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      opacity: 0;
+      transition: opacity .5s;
+    }
+
+    .wrapnew .item:hover .txt {
+      opacity: 1;
+    }
+
+    .wrapnew .item h2 {
+      font-style: 32px;
+      color: #ff0;
+      font-weight: 500;
+    }
+
+    .wrapnew .item h2::after {
+      content: '';
+      display: block;
+      width: 0%;
+      height: 1.5px;
+      margin: 10px 0;
+      background-color: #ff0;
+      transition: width .5s .4s;
+    }
+
+    .wrapnew .item:hover h2::after {
+      width: 100%;
+    }
+
+    .wrapnew .item p {
+      font-style: 18px;
+      color: #fff;
+      font-weight: 100;
+    }
+
+    /* Responsive text sizes */
+    @media (max-width: 1200px) {
+      .wrapnew .item {
+        width: 33.33%;
+      }
+
+      .wrapnew .item h2 {
+        font-size: 28px;
+      }
+
+      .wrapnew .item p {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .wrapnew .item {
+        width: 50%;
+      }
+
+      .wrapnew .item h2 {
+        font-size: 24px;
+      }
+
+      .wrapnew .item p {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .wrapnew .item {
+        width: 100%;
+      }
+
+      .wrapnew .item h2 {
+        font-size: 20px;
+      }
+
+      .wrapnew .item p {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="notification alert alert-success alert-dismissible fade" role="alert" id="loginNotification">
+    <strong id="notificationMessage"></strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <script>
+    function showNotification(message) {
+      const notification = document.getElementById('loginNotification');
+      const notificationMessage = document.getElementById('notificationMessage');
+      notificationMessage.textContent = message;
+      notification.classList.add('show');
+
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 2000);  // 2秒后隐藏通知
+    }
+
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const status = getQueryParam('status');
+      if (status === 'login') {
+        showNotification('登入成功!');
+      } else if (status === 'guest') {
+        showNotification('遊客登入成功!');
+      }
+    });
+  </script>
+
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: rgba(255, 255, 255, 0.6);">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><img style="width: 110px;" src="img/Logonm.png" alt="#"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#about">關於我們</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#goal">目標</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#share">宣傳專區</a>
+          </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#new">最新消息</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#ecofee">環保折扣專區</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#gogo">表單回饋</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#illi">聯絡我們</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="查詢" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <div class="banner" id="top">
+    <div class="content container">
+      <div class="banner-txt">
+        <h1>當個減塑小子<small>From 雲科大視傳系學生</small></h1>
+        <h2>觀察夜市與環保的改善方法</h2>
+        <p></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 關於我們 -->
+  <div class="about" id="about">
+    <div class="wrap">
+      <div class="container text-center">
+        <h1>ABOUT</h1>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <img src="img/1110607-01.jpg" alt="Image" class="card-img" style="border-radius: 20px;">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card-body">
+            <h5 class="card-title">關於我們</h5>
+            <p class="card-text">我們是國立雲林科技大學視覺傳達設計系一年級的學生。</p>
+            <a href="https://www.yuntech.edu.tw/" class="btn btn-primary">了解更多</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 目標 -->
+  <!-- <div class="GOAL1">
+    <h1 id="goal">GOAL</h1>
+
+    <div class="container goal-section">
+      <div class="row align-items-center">
+        <div class="col-lg-6 col-md-6 col-12 order-lg-1 order-md-1 order-1">
+          <h2 class="goal-title">我們的目標</h2>
+          <p class="goal-content">
+
+          </p>
+          <ul class="goal-content">
+            <li>我們的團隊致力於推廣夜市的環保意識：</li>
+            <br>
+            <li>鼓勵大眾在夜市積極餐與減少塑膠製品的使用。</li>
+            <li>建立減少塑膠的環保觀念。</li>
+            <li>我們的目標群眾是學生顧客和攤販。</li>
+            <li>希望透過網站的宣傳和資訊分享。</li>
+            <li>引導更多人專注並參與環保議題。</li>
+          </ul>
+        </div>
+        <div class="col-lg-6 col-md-6 col-12 mb-4 mb-md-0 order-lg-2 order-md-2 order-2">
+          <img src="img/b2.jpg" alt="團隊目標圖像" class="goal-image">
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="goal">
+    <div class="wrap">
+      <div class="container text-center">
+        <h1 id="goal">GOAL</h1>
+        <div class="txt">
+          <h3>我們的目標</h3>
+          <p>我們的團隊致力於推廣夜市的環保意識：</p>
+          <!-- <p>鼓勵大眾在夜市積極餐與減少塑膠製品的使用，建立減少塑膠的環保觀念。我們的目標群眾是學生顧客和攤販，希望透過網站的宣傳和資訊分享，引導更多人專注並參與環保議題。</p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="goal2">
+    <div class="wrap">
+      <div class="item">
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" class="bi bi-tree-fill"
+            viewBox="0 0 16 16">
+            <path
+              d="M8.416.223a.5.5 0 0 0-.832 0l-3 4.5A.5.5 0 0 0 5 5.5h.098L3.076 8.735A.5.5 0 0 0 3.5 9.5h.191l-1.638 3.276a.5.5 0 0 0 .447.724H7V16h2v-2.5h4.5a.5.5 0 0 0 .447-.724L12.31 9.5h.191a.5.5 0 0 0 .424-.765L10.902 5.5H11a.5.5 0 0 0 .416-.777z" />
+          </svg>
+        </div>
+        <div class="txt">
+          <h3>鼓勵減塑</h3>
+          <p>鼓勵大眾在夜市積極參與減少塑膠製品的使用，建立減少塑膠的環保觀念。</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" class="bi bi-person-circle"
+            viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+            <path fill-rule="evenodd"
+              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+          </svg>
+        </div>
+        <div class="txt">
+          <h3>目標群眾</h3>
+          <p>我們的目標群眾是學生顧客和攤販，相互影響達成在夜市實行減塑。</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" class="bi bi-share-fill"
+            viewBox="0 0 16 16">
+            <path
+              d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5" />
+          </svg>
+        </div>
+        <div class="txt">
+          <h3>宣傳與分享</h3>
+          <p>透過網站的宣傳和資訊分享，引導更多人專注並參與環保議題。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="wraptop" id="inp">
+    <div class="wrap">
+      <div class="container text-center">
+        <h1 id="share">宣傳專區</h1>
+      </div>
+    </div>
+  </div>
+  <ul>
+    <li id="manga" style="font-size: 20px;">●漫畫小學堂</li>
+  </ul>
+
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="wrapinp">
+          <div class="item">
+            <img src="img/L1-4.jpg" alt="" class="carousel-image">
+            <div class="txt2">
+              <!-- <h3>問題篇</h3>
+                        <p>究竟是什麼套住了海龜和螃蟹的頭呢?</p> -->
+            </div>
+          </div>
+          <div class="item">
+            <img src="img/L5.jpg" alt="" class="carousel-image">
+            <div class="txt">
+              <!-- <h3>Lorem, ipsum dolor.</h3>
+                        <p>內文於戲內文於戲內文於戲內文於戲</p> -->
+            </div>
+          </div>
+          <div class="item">
+            <img src="img/L6.jpg" alt="" class="carousel-image">
+            <div class="txt">
+              <!-- <h3>Lorem, ipsum dolor.</h3>
+                        <p>內文於戲內文於戲內文於戲內文於戲</p> -->
+            </div>
+          </div>
+          <div class="item">
+            <img src="img/L7.jpg" alt="" class="carousel-image">
+            <div class="txt">
+              <!-- <h3>Lorem, ipsum dolor.</h3>
+                        <p>內文於戲內文於戲內文於戲內文於戲</p> -->
+            </div>
+          </div>
+          <div class="item">
+            <img src="img/L8.jpg" alt="" class="carousel-image">
+            <div class="txt">
+              <!-- <h3>Lorem, ipsum dolor.</h3>
+                        <p>內文於戲內文於戲內文於戲內文於戲</p> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="wrapinp2">
+          <div class="item">
+            <img src="img/Y1.jpg" alt="" class="carousel-image">
+            <div class="txt2">
+              <!-- <h3>解決篇</h3>
+                        <p>海龜拿出了......?</p> -->
+            </div>
+          </div>
+          <div class="item">
+            <img src="img/Y2.jpg" alt="" class="carousel-image">
+            <div class="txt">
+              <!-- <h3>Lorem, ipsum dolor.</h3>
+                        <p>內文於戲內文於戲內文於戲內文於戲內文於戲</p> -->
+            </div>
+          </div>
+          <div class="item">
+            <img src="img/Y3.jpg" alt="" class="carousel-image">
+            <div class="txt">
+              <!-- <h3>Lorem, ipsum dolor.</h3>
+                        <p>內文於戲內文於戲內文於戲內文於戲內文於戲</p> -->
+            </div>
+          </div>
+          <div class="item">
+            <img src="img/Y4.jpg" alt="" class="carousel-image">
+            <div class="txt">
+              <!-- <h3>Lorem, ipsum dolor.</h3>
+                        <p>內文於戲內文於戲內文於戲內文於戲內文於戲</p> -->
+            </div>
+          </div>
+          <div class="item">
+            <img src="img/Y5.jpg" alt="" class="carousel-image">
+            <div class="txt">
+              <!-- <h3>Lorem, ipsum dolor.</h3>
+                        <p>內文於戲內文於戲內文於戲內文於戲內文於戲內文於戲內文於戲內文於戲內文於戲</p> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="imageModalLabel">Image Preview</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img src="" alt="" id="modalImage" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const carouselImages = document.querySelectorAll('.carousel-image');
+      const modalImage = document.getElementById('modalImage');
+      const imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+
+      carouselImages.forEach(image => {
+        image.addEventListener('click', function () {
+          modalImage.src = this.src;
+          imageModal.show();
+        });
+      });
+    });
+  </script>
+
+  <ul style="width: 100%;">
+    <li class="mt-5" id="lines" style="font-size: 20px;">●LINE貼圖</li>
+  </ul>
+  <div class="line">
+    <div class="container d-flex justify-content-center align-items-center" style="height: 320px;">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card ">
+            <img src="img/IMG_3583.jpg" alt="Image" class="card-img">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card-body">
+            <h5 class="card-title">這個海龜真的很在乎地球</h5>
+            <p class="card-text">超卡哇海龜貼圖，讓你提醒自己和親朋好友們一起環保吧!</p>
+            <a href="https://line.me/S/sticker/26799078/?lang=zh-Hant&utm_source=gnsh_stickerDetail"
+              class="btn btn-primary">點擊購買</a>
+            <div class="row mt-3" id="responsive-images">
+              <div class="col-md-3 mb-3">
+                <img src="img/s1.jpg" alt="Placeholder" class="img-thumbnail">
+              </div>
+              <div class="col-md-3 mb-3">
+                <img src="img/s2.jpg" alt="Placeholder" class="img-thumbnail">
+              </div>
+              <div class="col-md-3 mb-3">
+                <img src="img/s3.jpg" alt="Placeholder" class="img-thumbnail">
+              </div>
+              <div class="col-md-3 mb-3">
+                <img src="img/s4.jpg" alt="Placeholder" class="img-thumbnail">
+              </div>
+              <div class="col-md-3 mb-3">
+                <img src="img/s5.jpg" alt="Placeholder" class="img-thumbnail">
+              </div>
+              <div class="col-md-3 mb-3">
+                <img src="img/s6.jpg" alt="Placeholder" class="img-thumbnail">
+              </div>
+              <div class="col-md-3 mb-3">
+                <img src="img/s7.jpg" alt="Placeholder" class="img-thumbnail">
+              </div>
+              <div class="col-md-3 mb-3">
+                <img src="img/s8.jpg" alt="Placeholder" class="img-thumbnail">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ul class="mt-5" id="lines" style="width: 100%;">
+    <li id="fan" style="font-size: 20px;">●粉絲專頁</li>
+  </ul>
+
+  <div class="container">
+    <div class="contentbig233 ill" id="content">
+      <div class="con233top">
+      </div>
+      <div class="content233">
+        <div class="item">
+          <img src="img/iii.png" alt="">
+          <div class="txt">
+            <h2>Facebook</h2>
+            <p align="left">獲取最新訊息。</p>
+            <a href="https://www.facebook.com/profile.php?id=61560535948623" class="btn">前往</a>
+          </div>
+        </div>
+        <div class="item">
+          <img src="img/ins.png" alt="">
+          <div class="txt">
+            <h2>Instagram</h2>
+            <p align="left">獲取最新訊息。</p>
+            <a href="https://www.instagram.com/neme_2024/" class="btn">前往</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 最新消息 -->
+  <div class="new" id="new">
+    <div class="wrap">
+      <div class="container text-center">
+        <h1>最新消息</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrapnew">
+    <div class="item">
+      <img src="img/IMG_3445.jpg" alt="">
+      <div class="txt">
+        <h2>垃圾桶不再分類?</h2>
+        <p>由於觀察到許多人習慣垃圾整袋丟，基於方便性將改成通用垃圾桶。</p>
+      </div>
+
+    </div>
+    <div class="item">
+      <img src="img/45.jpg" alt="">
+      <div class="txt">
+        <h2>夜市的開業時間</h2>
+        <p>每週二、六、日營業！ <br>時間為17:00-00:00</p>
+      </div>
+
+    </div>
+    <div class="item">
+      <img src="img/b3.jpg" alt="">
+      <div class="txt">
+        <h2>攤位持續增多!</h2>
+        <p>這周新增許多新攤販，歡迎來逛~<br>也歡迎新的營業夥伴。</p>
+      </div>
+
+    </div>
+    <div class="item">
+      <img src="img/IMG_3742.JPG" alt="">
+      <div class="txt">
+        <h2>草莓攤出沒👀</h2>
+        <p>草莓控歡迎來夜市選購，價格實惠。</p>
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <!-- 登記 -->
+  <div class="eco" style="background-color: #e0ffd4;" id="inp">
+    <div class="wrap">
+      <div class="container text-center" id="ecofee">
+        <h1>環保折扣專區</h1>
+      </div>
+    </div>
+
+    <div class="ecocheck m-5">
+      <div class="container mt-5">
+        <div class="row">
+          <!-- 登記表單 -->
+          <div class="col-md-6">
+            <div class="card" style="border-radius: 20px; margin-bottom: 80px;">
+              <div class="card-body">
+                <h3 class="card-title text-center">環保折扣登記</h3>
+                <p class="text-center">查看有哪些店家提供優惠，環保又省錢!!</p>
+                <form id="registrationForm">
+                  <div class="mb-1">
+                    <label for="name" class="form-label">店家名稱</label>
+                    <input type="text" class="form-control" placeholder="店家名稱" id="name" required>
+                  </div>
+                  <div class="mb-4">
+                    <label for="contact" class="form-label">可折扣項目</label>
+                    <input type="text" class="form-control" placeholder="可折扣項目" id="contact" required>
+                  </div>
+                  <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">登記</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- 登記名單 -->
+          <div class="col-md-6">
+            <div class="card" style="border-radius: 20px;">
+              <div class="card-body" style="border-radius: 30px;">
+                <h3 class="card-title text-center">今日登記名單</h3>
+                <ul class="list-group" id="registrationList">
+                  <!-- 登記名單將顯示在這裡 -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('registrationForm');
+        const registrationList = document.getElementById('registrationList');
+        const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+
+        // 加載本地存儲中的登記名單
+        loadRegistrations();
+
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+
+          const name = document.getElementById('name').value;
+          const contact = document.getElementById('contact').value;
+
+          // 清空表單
+          form.reset();
+
+          // 添加新登記項目到名單的頂部
+          const newItem = document.createElement('li');
+          newItem.className = 'list-group-item';
+          newItem.textContent = `🏪店家: ${name}  💰折扣項目: ${contact}`;
+
+          registrationList.insertBefore(newItem, registrationList.firstChild);
+
+          // 保存到本地存儲
+          saveRegistration(name, contact);
+
+          // 只保留最新的五個登記項目
+          while (registrationList.children.length > 5) {
+            registrationList.removeChild(registrationList.lastChild);
+          }
+
+          // 保持滾動在頂部
+          window.scrollTo(0, 0);
+
+          // 顯示成功登記的模態框
+          successModal.show();
+        });
+
+        function loadRegistrations() {
+          const registrations = JSON.parse(localStorage.getItem('registrations')) || [];
+          registrations.forEach(registration => {
+            const newItem = document.createElement('li');
+            newItem.className = 'list-group-item';
+            newItem.textContent = `🏪店家: ${registration.name} 💰折扣項目: ${registration.contact}`;
+            registrationList.appendChild(newItem);
+          });
+        }
+
+        function saveRegistration(name, contact) {
+          let registrations = JSON.parse(localStorage.getItem('registrations')) || [];
+          registrations.unshift({ name, contact });
+          if (registrations.length > 5) {
+            registrations = registrations.slice(0, 5);
+          }
+          localStorage.setItem('registrations', JSON.stringify(registrations));
+        }
+      });
+    </script>
+
+    <!-- 登記完成的 Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="successModalLabel">登記完成</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            您已完成登記今日環保折扣！
+            <img src="img/6.jpg" class="img-fluid mt-3 w-50" alt="示例圖片">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+  </div>
+
+
+
+
+  <!-- 表單回饋 -->
+  <div id="gogo" class="feedback-container mt-5"style="border-radius: 30px;">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="feedback-container">
+          <h2 class="feedback-title">表單回饋</h2>
+          <p class="feedback-content">您的意見對我們很重要，請告訴我們您的想法。</p>
+          <img src="img/17.jpg" alt="圖片" class="img-fluid rounded-circle mb-4 w-25">
+          <form>
+            <div class="mb-3">
+              <input type="text" class="form-control form-control-lg mb-2" id="name" placeholder="姓名" required>
+              <label for="name" class="form-label visually-hidden">姓名</label>
+            </div>
+            <div class="mb-3">
+              <input type="email" class="form-control form-control-lg mb-2" id="email" placeholder="電子郵件" required>
+              <label for="email" class="form-label visually-hidden">電子郵件</label>
+            </div>
+            <div class="mb-3">
+              <textarea class="form-control form-control-lg mb-2" id="message" rows="4" placeholder="網站體驗回饋"
+                required></textarea>
+              <label for="message" class="form-label visually-hidden">網站優化建議</label>
+            </div>
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn btn-primary btn-lg mt-3" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">提交</button>
+            </div>
+          </form>
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">已完成填寫</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                  <p>謝謝您的回饋，我們會盡快優化及改善!</p>
+                  <img src="img/IMG_0510.jpg" class="img-fluid mt-3 w-50" alt="示例圖片">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <p class="mt-3 text-center"><a href="#" class="feedback-link">提交其他回饋</a></p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="end_wrap illi" id="illi">
+    <div class="content">
+      <div class="end">
+        <h2>Contact Us</h2>
+        <h4>聯絡我們</h4>
+
+        <form action="#">
+          <div class="item">
+            <label for="name">姓名</label>
+            <br>
+            <input type="text" id="name" name="your-name">
+          </div>
+
+          <div class="item">
+            <label for="email">電子郵件</label>
+            <br>
+            <input type="email" id="email" name="your-email">
+          </div>
+
+          <div class="item">
+            <label for="message">問題欄位</label>
+            <br>
+            <textarea id="message" name="your-message"></textarea>
+          </div>
+
+          <input type="submit" class="button" value="送出">
+        </form>
+      </div>
+
+      <div class="end_txt">
+        <h2>Official Information</h2>
+        <h4>官方資訊</h4>
+        <div class="wrap">
+          <div class="item">
+            <div class="txt">
+              <h3><img src="img/home.png" alt="">單位名稱:設計概論</h3>
+            </div>
+          </div>
+          <div class="item">
+            <div class="txt">
+              <h3><img src="img/whatsapp.png" alt="">官方電話:05-5342601</h3>
+            </div>
+          </div>
+          <div class="item">
+            <div class="txt">
+              <h3><img src="img/envelope.png" alt="">官方信箱:nemeco2024@gmail.com</h3>
+            </div>
+          </div>
+          <div class="item">
+            <div class="txt">
+              <h3><img src="img/pin.png" alt="">單位地址:雲林縣斗六市大學路3段123號</h3>
+            </div>
+          </div>
+        </div>
+
+        <br><br><br>
+
+        <div class="wrap2">
+          <h2>Follow Us</h2>
+          <h4>關注我們</h4>
+          <div class="pic">
+            <a href="indexlmao.html">
+              <img style="width: 80px;" src="img/twitter.png" alt="#">
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61560535948623&mibextid=LQQJ4d">
+              <img style="width: 80px;" src="img/facebook.png" alt="#">
+            </a>
+            <a href="https://www.instagram.com/neme_2024?igsh=MzkyMXBzc3dxMmgy">
+              <img style="width: 80px;" src="img/instagram.png" alt="#">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="new-contents wrapper justify-content-center">
+    <article>
+        <header class="post-info">
+            <h2 class="post-title">關於我們</h2>
+            <p class="post-date">5/14 <span>2024</span></p>
+            <p class="post-cat">類別:團隊介紹</p>
+        </header>
+        <img src="img/441356676_471178592080810_2581103286657769751_n.jpg" alt="">
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste, non quia ut magnam dolorum molestias? Ex nihil
+            perferendis voluptates eveniet, ipsam reiciendis eligendi tempore non nulla saepe perspiciatis nemo id. Et ex
+            aperiam dolor obcaecati culpa eveniet optio non odio impedit, excepturi est enim aut error qui laudantium animi
+            ut.</p>
+    </article>
+</div> -->
+  <!-- 目標轉轉圖 -->
+  <!-- <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="img/1384249634-1302687327_wn.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>First slide label</h5>
+          <p>Some representative placeholder content for the first slide.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="img/IMG_3373.JPG" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Second slide label</h5>
+          <p>Some representative placeholder content for the second slide.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="img/螢幕擷取畫面 2024-05-15 233209.png" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Third slide label</h5>
+          <p>Some representative placeholder content for the third slide.</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div> -->
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
